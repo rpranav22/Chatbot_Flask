@@ -1,0 +1,8 @@
+Receiving products at store. The stock levels for a few items have gone down. Store manager raises a vendor PO on the system. Vendor vehicle with goods arrives. Security guard puts the vehicle-in stamp on the invoice and enters the details in the register. Security guard hands over the invoice to GR clerk. GR clerk checks whether delivery is as per appointment. Do ensure you book an appointment next time in advance, ok. No, we had not taken appointment. Vendor hasn’t taken a prior appointment. GR clerks tell him to book an appointment next time in advance.
+GR clerk does the Panchnama validation on the vendor invoice.
+If the invoice would have failed the Panchnama checks, the consignment would be sent back.
+The invoice passes the Panchnama checks!GR clerk checks the PO in the system and creates ASN for vendor after generating trip and scroll.
+The unloading process begins. Staff palletize the stock and perform macro checks. Macro check involve checking EAN, MRP, shelf life, qty, case config and free SKUs match with PO.
+If macro check fails, move consignment to block stock and inform store buyer.
+Goods pass macro check.
+Pallet labels are put. Once macro check is done, ‘Goods Received’ stamp being put on the invoice and lorry receipt. Security guard and GR clerk signs.  Trip closes and vendor vehicle leaves.
