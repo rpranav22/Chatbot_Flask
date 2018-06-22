@@ -14,7 +14,7 @@ import os
 app = Flask(__name__, static_url_path="/static")
 api = Api(app)
 
-CORS(app)
+CORS(app, supports_credentials=True)
 
 app.secret_key = os.urandom(16)
 # session['topic']= None
@@ -26,6 +26,7 @@ app.secret_key = os.urandom(16)
 # Routing
 #
 @app.route('/message', methods=['POST'])
+# @cross_origin
 def reply():
     greetPattern = re.compile("^\ *((hi+)|((good\ )?morning|evening|afternoon)|(he((llo)|y+)))\ *$", re.IGNORECASE)
     receive = request.form['msg']
