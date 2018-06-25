@@ -140,6 +140,7 @@ class ProcessedQuestion:
         searchQuery = []
         questionTaggers = ['WP','WDT','WP$','WRB']
         for tag in qPOS:
+            # print(tag)
             if tag[1] in questionTaggers:
                 continue
             else:
@@ -211,7 +212,7 @@ class ProcessedQuestion:
     #       word(str) : Word token
     # Output:
     #       synonyms(list) : List of synonyms of given word
-    def getSynonyms(word):
+    def getSynonyms(self, word):
         synonyms = []
         for syn in wordnet.synsets(word):
             for l in syn.lemmas():

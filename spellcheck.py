@@ -56,4 +56,4 @@ class spellcheck:
 
 
 # sc = spellcheck()
-# print(sc.correction('anthrohology', 'Anthropology.txt'))
+# print(sc.candidates('cpmparitive', 'Anthropology.txt'))

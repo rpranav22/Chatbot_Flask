@@ -65,43 +65,74 @@ def reply():
         # drm = retrievePara(path)
         session['topic'] = topic
         print("now: ",session)
+    elif 'spellcheck' in session:
+        if session['spellcheck'] == False and userQuery.lower() == "yes":
+            topic = session['topic']
+            ques = session['ques_corrected']
+            pq = PQ(ques, True, False, True)
+            print("session topic: ", topic)
+            path = 'dataset/' + topic
+            drm = retrievePara(path)
+            response['text'].append(drm.query(pq))
+            del session['spellcheck']
+            del session['ques_corrected']
+            del session['ques']
+        else:
+            topic = session['topic']
+            ques = session['ques']
+            pq = PQ(ques, True, False, True)
+            print("session topic: ", topic)
+            path = 'dataset/' + topic
+            drm = retrievePara(path)
+            response['text'].append(drm.query(pq))
+            del session['spellcheck']
+            del session['ques_corrected']
+            del session['ques']
+
+
     elif 'topic' in session:
         # Proocess Question
         topic = session['topic']
-        sc = SC()
-        pq = PQ(userQuery, True, False, True)
-        sq = pq.searchQuery
-        sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), sq)))
-        print("\nsq: ", sq)
-        corrected = []
-        # self.stopWords = stopwords.words("english")
-        for word in sq:
-            # if word in stopwords.words("english"):
-            #     continue
-            poss = sc.correction(word, topic)
-            if word != poss:
-                corrected.append(poss)
-            else:
-                corrected.append(word)
-
-        print("corrected: ", corrected)
-
-        if sq != corrected:
-            corrected = ' '.join(corrected)
-            print("\n\nDid you mean {}?".format(corrected))
-            response['text'].append("Did you mean: {}?".format(corrected))
+        print("session topic: ", topic)
+        path = 'dataset/' + topic
+        drm = retrievePara(path)
+        if type(drm) == str:
+            response['text'].append(drm)
+            del session['topic']
         else:
+            sc = SC()
+            word_list = userQuery.split(' ')
+            sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
+            print("\nsq: ", sq)
+            corrected = []
+            # self.stopWords = stopwords.words("english")
+            for word in sq:
+                # if word in stopwords.words("english"):
+                #     continue
+                poss = sc.correction(word, topic)
+                if word != poss and not word in stopwords.words("english") and len(poss)>4:
+                    corrected.append(poss)
+                else:
+                    corrected.append(word)
 
-            # Get Response From Bot
+            print("corrected: ", corrected)
 
-            print("session topic: ", session['topic'])
-            path = 'dataset/' + topic
-            drm = retrievePara(path)
-            if type(drm) == str:
-                response['text'].append(drm)
-                del session['topic']
+            if sq != corrected:
+                corrected = ' '.join(corrected)
+                print("\n\nDid you mean {}?".format(corrected))
+                response['text'].append("Did you mean: {}?".format(corrected))
+                response['spellcheck'] = True
+                session['spellcheck'] = False
+                session['ques_corrected'] = corrected
+                session['ques'] = userQuery
+
             else:
+
+                # Get Response From Bot
+                pq = PQ(userQuery, True, False, True)
                 response['text'].append(drm.query(pq))
+                if 'spellcheck' in session:
+                    del session['spellcheck']
 
     else:
         response['text'].append("Please provide a relevant topic before you start asking me a question.")
