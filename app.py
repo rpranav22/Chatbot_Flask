@@ -16,7 +16,8 @@ api = Api(app)
 
 CORS(app, supports_credentials=True)
 
-app.secret_key = os.urandom(16)
+app.secret_key = b'\xdf\x89M+\xa0\x80#/\xa2\x1f\x86\xe4\xe5\xd0\x90\x89'
+
 # session['topic']= None
 
 
