@@ -25,6 +25,7 @@ import json
 import math
 import re
 
+nltk.download('punkt')
 class DocumentRetrievalModel:
     def __init__(self,paragraphs,removeStopWord = False,useStemmer = False):
         self.idf = {}               # dict to store IDF for words in paragraph
