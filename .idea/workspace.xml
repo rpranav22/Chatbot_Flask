@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="798ea9ca-416d-4556-afcc-71ab44458313" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProcessedQuestion.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProcessedQuestion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spellcheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/spellcheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/app.py" afterDir="false" />
-    </list>
+    <list default="true" id="798ea9ca-416d-4556-afcc-71ab44458313" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +11,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ui/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1935">
@@ -28,7 +23,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spellcheck.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="spellcheck.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spellcheck.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="454">
@@ -226,7 +221,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20305677" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -493,22 +487,22 @@
     <entry file="file://$PROJECT_DIR$/dataset/Anthropology.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spellcheck.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
           <caret line="57" selection-start-line="57" selection-start-column="2" selection-end-line="58" selection-end-column="57" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1935">
+          <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
