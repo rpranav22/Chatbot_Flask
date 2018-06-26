@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="798ea9ca-416d-4556-afcc-71ab44458313" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/DocumentRetrievalModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/DocumentRetrievalModel.py" afterDir="false" />
-    </list>
+    <list default="true" id="798ea9ca-416d-4556-afcc-71ab44458313" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,11 +66,8 @@
       <file leaf-file-name="DocumentRetrievalModel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DocumentRetrievalModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-              <folding>
-                <element signature="e#803#836#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="195">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -232,7 +227,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20305677" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -313,9 +307,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2310">
           <caret line="154" column="24" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
-          <folding>
-            <element signature="e#803#836#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -367,9 +358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2175">
           <caret line="154" column="24" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
-          <folding>
-            <element signature="e#803#836#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -415,9 +403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2310">
           <caret line="154" column="24" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
-          <folding>
-            <element signature="e#803#836#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -541,11 +526,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DocumentRetrievalModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding>
-            <element signature="e#803#836#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="11" />
         </state>
       </provider>
     </entry>
