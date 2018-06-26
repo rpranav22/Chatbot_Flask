@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798ea9ca-416d-4556-afcc-71ab44458313" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/DocumentRetrievalModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/DocumentRetrievalModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nltk.txt" beforeDir="false" afterPath="$PROJECT_DIR$/nltk.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nltk.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nltk.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nltk.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="9" selection-start-column="9" selection-end-column="9" />
+            <state relative-caret-position="30">
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -65,11 +65,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="DocumentRetrievalModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DocumentRetrievalModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DocumentRetrievalModel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+              <caret line="27" column="15" lean-forward="true" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="41" />
               <folding>
                 <element signature="e#803#836#0" expanded="true" />
               </folding>
@@ -114,10 +114,10 @@
         <option value="$PROJECT_DIR$/ui/app.py" />
         <option value="$PROJECT_DIR$/spellcheck.py" />
         <option value="$PROJECT_DIR$/runtime.txt" />
-        <option value="$PROJECT_DIR$/nltk.txt" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/DocumentRetrievalModel.py" />
+        <option value="$PROJECT_DIR$/nltk.txt" />
       </list>
     </option>
   </component>
@@ -533,20 +533,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nltk.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DocumentRetrievalModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <caret line="27" column="15" lean-forward="true" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="41" />
           <folding>
             <element signature="e#803#836#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nltk.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>

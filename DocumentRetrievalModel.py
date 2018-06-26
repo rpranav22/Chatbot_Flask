@@ -25,7 +25,7 @@ import json
 import math
 import re
 
-nltk.download('averaged_perceptron_tagger')
+# nltk.download('averaged_perceptron_tagger')
 class DocumentRetrievalModel:
     def __init__(self,paragraphs,removeStopWord = False,useStemmer = False):
         self.idf = {}               # dict to store IDF for words in paragraph
