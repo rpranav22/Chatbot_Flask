@@ -44,7 +44,7 @@ def spellcheck():
             del session['ques_corrected']
             del session['ques']
         elif userInput == "no":
-            response['spellcheck'] = False
+            response['spellcheck'] = True
             response['query'] = session['ques']
             response['text'].append("going ahead with {}".format(session['ques']))
             del session['spellcheck']
@@ -89,7 +89,8 @@ def spellcheck():
 # @cross_origin
 def reply():
     greetPattern = re.compile("^\ *((hi+)|((good\ )?morning|evening|afternoon)|(he((llo)|y+)))\ *$", re.IGNORECASE)
-    receive = request.form['msg']
+    print(request.data)
+    receive = request.get('msg')
     # receive = request.data
     userQuery = receive
     print(userQuery)
@@ -100,8 +101,10 @@ def reply():
     response['text']=[]
     # session['filecheck'] = False
     # drm = None
-    if (not len(userQuery) > 0):
+    if (userQuery is None):
         print("Bot> You need to ask something")
+        response['text'].append("Just trying")
+        return jsonify(response)
 
     elif greetPattern.findall(userQuery):
         response['text'].append("Hello!")
