@@ -31,35 +31,54 @@ app.secret_key = b'\xdf\x89M+\xa0\x80#/\xa2\x1f\x86\xe4\xe5\xd0\x90\x89'
 def spellcheck():
     sc = SC()
     userInput = request.form['msg']
-    response={}
-    response['text']=[]
-    word_list = userInput.split(' ')
-    sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
-    print("\nsq: ", sq)
-    corrected = []
-    # self.stopWords = stopwords.words("english")
-    for word in sq:
-        # if word in stopwords.words("english"):
-        #     continue
-        poss = sc.correction(word)
-        if word != poss and not word in stopwords.words("english") and len(poss) > 4:
-            corrected.append(poss)
-        else:
-            corrected.append(word)
-
-    print("corrected: ", corrected)
-
-    if sq != corrected:
-        corrected = ' '.join(corrected)
-        print("\n\nDid you mean: {}?".format(corrected))
-        response['text'].append("Did you mean: {}?".format(corrected))
-        response['spellcheck'] = True
-        session['spellcheck'] = False
-        session['ques_corrected'] = corrected
-        session['ques'] = userInput
+    response = {}
+    response['text'] = []
+    if 'spellcheck' in session:
+        if userInput == "yes":
+            response['spellcheck'] = True
+            response['query'] = session['ques_corrected']
+            response['text'].append("fine for now")
+            del session['spellcheck']
+            del session['ques_corrected']
+            del session['ques']
+        elif userInput == "no":
+            response['spellcheck'] = False
+            response['query'] = session['ques']
+            response['text'].append("going ahead with {}".format(session['ques']))
+            del session['spellcheck']
+            del session['ques_corrected']
+            del session['ques']
     else:
-        response['spellcheck']=True
-        response['text'] = "fine for now"
+
+        word_list = userInput.split(' ')
+        sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
+        print("\nsq: ", sq)
+        corrected = []
+        # self.stopWords = stopwords.words("english")
+        for word in sq:
+            # if word in stopwords.words("english"):
+            #     continue
+            poss = sc.correction(word)
+            if word != poss and not word in stopwords.words("english") and len(poss) > 4:
+                corrected.append(poss)
+            else:
+                corrected.append(word)
+
+        print("corrected: ", corrected)
+
+        if sq != corrected:
+            corrected = ' '.join(corrected)
+            print("\n\nDid you mean: {}?".format(corrected))
+            response['text'].append("Did you mean: {}?".format(corrected))
+            response['query'] = corrected
+            response['spellcheck'] = False
+            session['spellcheck'] = False
+            session['ques_corrected'] = corrected
+            session['ques'] = userInput
+        else:
+            response['spellcheck']=True
+            response['query'] = userInput
+            response['text'].append("fine for now")
 
     return jsonify(response)
 
