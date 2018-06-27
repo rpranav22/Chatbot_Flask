@@ -9,8 +9,9 @@ from DocumentRetrievalModel import DocumentRetrievalModel as DRM
 from ProcessedQuestion import ProcessedQuestion as PQ
 from nltk.corpus import stopwords
 import re
-import os
+import enchant
 
+d = enchant.Dict("en_GB")
 app = Flask(__name__, static_url_path="/static")
 api = Api(app)
 
@@ -29,6 +30,34 @@ app.secret_key = b'\xdf\x89M+\xa0\x80#/\xa2\x1f\x86\xe4\xe5\xd0\x90\x89'
 @app.route('/spellcheck', methods=['POST'])
 def spellcheck():
     userInput = request.form['msg']
+    response={}
+    response['text']=[]
+    word_list = userInput.split(' ')
+    sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
+    print("\nsq: ", sq)
+    corrected = []
+    # self.stopWords = stopwords.words("english")
+    for word in sq:
+        # if word in stopwords.words("english"):
+        #     continue
+        poss = d.suggest(word)[0]
+        if word != poss and not word in stopwords.words("english") and len(poss) > 4:
+            corrected.append(poss)
+        else:
+            corrected.append(word)
+
+    print("corrected: ", corrected)
+
+    if sq != corrected:
+        corrected = ' '.join(corrected)
+        print("\n\nDid you mean: {}?".format(corrected))
+        response['text'].append("Did you mean: {}?".format(corrected))
+        response['spellcheck'] = True
+        session['spellcheck'] = False
+        session['ques_corrected'] = corrected
+        session['ques'] = userInput
+
+    return jsonify(response)
 
 
 @app.route('/message', methods=['POST'])
@@ -115,7 +144,7 @@ def reply():
             for word in sq:
                 # if word in stopwords.words("english"):
                 #     continue
-                poss = sc.correction(word)
+                poss = sc.correction(word, topic)
                 if word != poss and not word in stopwords.words("english") and len(poss)>4:
                     corrected.append(poss)
                 else:
