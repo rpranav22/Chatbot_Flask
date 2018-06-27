@@ -57,6 +57,9 @@ def spellcheck():
         session['spellcheck'] = False
         session['ques_corrected'] = corrected
         session['ques'] = userInput
+    else:
+        response['spellcheck']=True
+        response['text'] = "fine for now"
 
     return jsonify(response)
 
