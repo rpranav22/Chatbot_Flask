@@ -9,9 +9,9 @@ from DocumentRetrievalModel import DocumentRetrievalModel as DRM
 from ProcessedQuestion import ProcessedQuestion as PQ
 from nltk.corpus import stopwords
 import re
-import enchant
-
-d = enchant.Dict("en_GB")
+# import enchant
+#
+# d = enchant.Dict("en_GB")
 app = Flask(__name__, static_url_path="/static")
 api = Api(app)
 
@@ -29,6 +29,7 @@ app.secret_key = b'\xdf\x89M+\xa0\x80#/\xa2\x1f\x86\xe4\xe5\xd0\x90\x89'
 #
 @app.route('/spellcheck', methods=['POST'])
 def spellcheck():
+    sc = SC()
     userInput = request.form['msg']
     response={}
     response['text']=[]
@@ -40,7 +41,7 @@ def spellcheck():
     for word in sq:
         # if word in stopwords.words("english"):
         #     continue
-        poss = d.suggest(word)[0]
+        poss = sc.correction(word)
         if word != poss and not word in stopwords.words("english") and len(poss) > 4:
             corrected.append(poss)
         else:
