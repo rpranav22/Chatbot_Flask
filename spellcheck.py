@@ -14,7 +14,7 @@ class spellcheck:
         return WORDS[word] / N
 
 
-    def correction(self, word, file):
+    def correction(self, word, file="big.txt"):
         "Most probable spelling correction for word."
         # p = P(word, file)
         probs=[]

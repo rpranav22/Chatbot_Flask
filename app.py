@@ -26,6 +26,11 @@ app.secret_key = b'\xdf\x89M+\xa0\x80#/\xa2\x1f\x86\xe4\xe5\xd0\x90\x89'
 #############
 # Routing
 #
+@app.route('/spellcheck', methods=['POST'])
+def spellcheck():
+    userInput = request.form['msg']
+
+
 @app.route('/message', methods=['POST'])
 # @cross_origin
 def reply():
@@ -110,7 +115,7 @@ def reply():
             for word in sq:
                 # if word in stopwords.words("english"):
                 #     continue
-                poss = sc.correction(word, topic)
+                poss = sc.correction(word)
                 if word != poss and not word in stopwords.words("english") and len(poss)>4:
                     corrected.append(poss)
                 else:
