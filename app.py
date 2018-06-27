@@ -31,9 +31,11 @@ app.secret_key = b'\xdf\x89M+\xa0\x80#/\xa2\x1f\x86\xe4\xe5\xd0\x90\x89'
 def spellcheck():
     sc = SC()
     userInput = request.form['msg']
+    print(userInput)
     response = {}
     response['text'] = []
     if 'spellcheck' in session:
+        print("entering session spellcheck")
         if userInput == "yes":
             response['spellcheck'] = True
             response['query'] = session['ques_corrected']
