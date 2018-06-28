@@ -219,12 +219,12 @@ def response():
     print("sess: ", session)
     # userQuery = "Hi"
     response = {}
-    response['displayText'] = []
+    response['fulfillmentText'] = []
     # session['filecheck'] = False
     # drm = None
     if (userQuery is None):
         print("Bot> You need to ask something")
-        response['displayText'].append("Just trying")
+        response['fulfillmentText'].append("Just trying")
         return jsonify(response)
 
 
@@ -236,7 +236,7 @@ def response():
         path = 'dataset/' + topic
         drm = retrievePara(path)
         if type(drm) == str:
-            response['displayText'].append(drm)
+            response['fulfillmentText'].append(drm)
             del session['topic']
         else:
             sc = SC()
@@ -259,7 +259,7 @@ def response():
             if sq != corrected:
                 corrected = ' '.join(corrected)
                 print("\n\nDid you mean {}?".format(corrected))
-                response['displayText'].append("Did you mean: {}?".format(corrected))
+                response['fulfillmentText'].append("Did you mean: {}?".format(corrected))
                 response['spellcheck'] = True
                 session['spellcheck'] = False
                 session['ques_corrected'] = corrected
@@ -269,17 +269,17 @@ def response():
 
                 # Get Response From Bot
                 pq = PQ(userQuery, True, False, True)
-                response['displayText'].append(drm.query(pq))
+                response['fulfillmentText'].append(drm.query(pq))
                 if 'spellcheck' in session:
                     del session['spellcheck']
 
     else:
-        response['displayText'].append("Please provide a relevant topic before you start asking me a question.")
+        response['fulfillmentText'].append("Please provide a relevant topic before you start asking me a question.")
 
     if 'topic' in session:
         print("topic is in session")
 
-    response['fullfillmentText'] = response['displayText']
+    # response['fullfillmentText'] = response['fulfillmentText']
     response['source'] = 'ques answer'
     return jsonify(response)
 
