@@ -207,9 +207,9 @@ def reply():
 def response():
     json_data = request.get_json()
     print(request.get_json()['queryResult']['outputContexts'])
-    print(request.get_json()['queryResult']['outputContexts'][1])
+    print("topic: ", request.get_json()['queryResult']['outputContexts'][0]['parameters']['topic_name'])
     receive = request.form.get('msg')
-    topic = json_data['queryResult']['outputContexts']['topic_name']
+    topic = json_data['queryResult']['outputContexts'][0]['parameters']['topic_name']
     print("topic: ", topic)
     session['topic'] = topic
     # receive = request.data
