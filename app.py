@@ -208,11 +208,11 @@ def response():
     json_data = request.get_json()
     print(request.get_json()['queryResult'])
     receive = request.form.get('msg')
-    topic = json_data['outputContexts']['topic_name']
+    topic = json_data['queryResult']['outputContexts']['topic_name']
     print("topic: ", topic)
     session['topic'] = topic
     # receive = request.data
-    userQuery = json_data['outputContexts']['queryResult']['queryText']
+    userQuery = json_data['queryResult']['queryText']
     print(userQuery)
     # userQuery="Hi"
     print("sess: ", session)
