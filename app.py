@@ -206,7 +206,8 @@ def reply():
 @app.route("/response", methods=['POST'])
 def response():
     json_data = request.get_json()
-    print(request.get_json()['queryResult'])
+    print(request.get_json()['queryResult']['outputContexts'])
+    print(request.get_json()['queryResult']['outputContexts'][1])
     receive = request.form.get('msg')
     topic = json_data['queryResult']['outputContexts']['topic_name']
     print("topic: ", topic)
