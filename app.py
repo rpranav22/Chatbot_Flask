@@ -279,7 +279,7 @@ def response():
     if 'topic' in session:
         print("topic is in session")
 
-    response['speech'] = response['displayText']
+    response['fullfillmentText'] = response['displayText']
     response['source'] = 'ques answer'
     return jsonify(response)
 
