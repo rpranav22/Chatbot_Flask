@@ -89,8 +89,8 @@ def spellcheck():
 # @cross_origin
 def reply():
     greetPattern = re.compile("^\ *((hi+)|((good\ )?morning|evening|afternoon)|(he((llo)|y+)))\ *$", re.IGNORECASE)
-    print(request.data)
-    receive = request.get('msg')
+    print(request.get_json())
+    receive = request.form.get('msg')
     # receive = request.data
     userQuery = receive
     print(userQuery)
@@ -109,9 +109,6 @@ def reply():
     elif greetPattern.findall(userQuery):
         response['text'].append("Hello!")
         response['text'].append("You can now send me your topic in the format Topic_Name.txt")
-        # res = jsonify({'text': [response,response2]})
-        # print(res)
-        # return res
 
     elif userQuery.strip().lower() == "bye":
         response['text'].append("Bye Bye!")
@@ -205,6 +202,85 @@ def reply():
 
 
     return jsonify(response)  # execute.decode_line(sess, model, enc_vocab, rev_dec_vocab
+
+@app.route("/response", methods=['POST'])
+def response():
+    json_data = request.get_json()
+    print(request.get_json())
+    receive = request.form.get('msg')
+    topic = json_data.outputContexts.topic_name
+    print("topic: ", topic)
+    session['topic'] = topic
+    # receive = request.data
+    userQuery = json_data.outputContexts.queryResult.queryText
+    print(userQuery)
+    # userQuery="Hi"
+    print("sess: ", session)
+    # userQuery = "Hi"
+    response = {}
+    response['displayText'] = []
+    # session['filecheck'] = False
+    # drm = None
+    if (userQuery is None):
+        print("Bot> You need to ask something")
+        response['displayText'].append("Just trying")
+        return jsonify(response)
+
+
+
+    elif 'topic' in session:
+        # Proocess Question
+        topic = session['topic']
+        print("session topic: ", topic)
+        path = 'dataset/' + topic
+        drm = retrievePara(path)
+        if type(drm) == str:
+            response['displayText'].append(drm)
+            del session['topic']
+        else:
+            sc = SC()
+            word_list = userQuery.split(' ')
+            sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
+            print("\nsq: ", sq)
+            corrected = []
+            # self.stopWords = stopwords.words("english")
+            for word in sq:
+                # if word in stopwords.words("english"):
+                #     continue
+                poss = sc.correction(word, topic)
+                if word != poss and not word in stopwords.words("english") and len(poss) > 4:
+                    corrected.append(poss)
+                else:
+                    corrected.append(word)
+
+            print("corrected: ", corrected)
+
+            if sq != corrected:
+                corrected = ' '.join(corrected)
+                print("\n\nDid you mean {}?".format(corrected))
+                response['displayText'].append("Did you mean: {}?".format(corrected))
+                response['spellcheck'] = True
+                session['spellcheck'] = False
+                session['ques_corrected'] = corrected
+                session['ques'] = userQuery
+
+            else:
+
+                # Get Response From Bot
+                pq = PQ(userQuery, True, False, True)
+                response['displayText'].append(drm.query(pq))
+                if 'spellcheck' in session:
+                    del session['spellcheck']
+
+    else:
+        response['displayText'].append("Please provide a relevant topic before you start asking me a question.")
+
+    if 'topic' in session:
+        print("topic is in session")
+
+    response['speech'] = response['displayText']
+    response['source'] = 'ques answer'
+    return jsonify(response)
 
 
 @app.route("/", methods=['POST'])
