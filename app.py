@@ -212,7 +212,7 @@ def response():
     contexts = json_data['queryResult']['outputContexts']
     for entry in contexts:
         print(entry)
-        if 'topic_name' in entry:
+        if 'topic_name' in entry['parameters']:
             topic = entry['parameters']['topic_name']
     print("topic: ", topic)
     session['topic'] = topic
