@@ -211,6 +211,7 @@ def response():
     receive = request.form.get('msg')
     contexts = json_data['queryResult']['outputContexts']
     for entry in contexts:
+        print(entry)
         if 'topic_name' in entry:
             topic = entry['parameters']['topic_name']
     print("topic: ", topic)
