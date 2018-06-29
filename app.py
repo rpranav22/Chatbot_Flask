@@ -207,9 +207,12 @@ def reply():
 def response():
     json_data = request.get_json()
     print(request.get_json()['queryResult']['outputContexts'])
-    print("topic: ", request.get_json()['queryResult']['outputContexts'][0]['parameters']['topic_name'])
+    # print("topic: ", request.get_json()['queryResult']['outputContexts'][0]['parameters']['topic_name'])
     receive = request.form.get('msg')
-    topic = json_data['queryResult']['outputContexts'][0]['parameters']['topic_name']
+    contexts = json_data['queryResult']['outputContexts']
+    for entry in contexts:
+        if 'topic_name' in entry:
+            topic = entry['parameters']['topic_name']
     print("topic: ", topic)
     session['topic'] = topic
     # receive = request.data
@@ -260,7 +263,7 @@ def response():
                 corrected = ' '.join(corrected)
                 print("\n\nDid you mean {}?".format(corrected))
                 response['fulfillmentText'].append("Did you mean: {}?".format(corrected))
-                response['spellcheck'] = True
+                # response['spellcheck'] = True
                 session['spellcheck'] = False
                 session['ques_corrected'] = corrected
                 session['ques'] = userQuery
