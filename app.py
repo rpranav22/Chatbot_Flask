@@ -50,6 +50,10 @@ def spellcheck():
             del session['spellcheck']
             del session['ques_corrected']
             del session['ques']
+        else:
+            del session['spellcheck']
+            del session['ques_corrected']
+            del session['ques']
     else:
 
         word_list = userInput.split(' ')
@@ -285,6 +289,27 @@ def response():
 
     # response['fullfillmentText'] = response['fulfillmentText']
     response['source'] = 'ques answer'
+
+    response["payload"] = {
+        "google": {
+            "expectUserResponse": "true",
+            "richResponse": {
+                "items": [
+                    {
+                        "simpleResponse": {
+                            "textToSpeech": "this is a simple response"
+                        }
+                    }
+                ]
+            }
+        },
+        "facebook": {
+            "text": "Hello, Facebook!"
+        },
+        "slack": {
+            "text": "This is a text response for Slack."
+        }
+    }
     return jsonify(response)
 
 
