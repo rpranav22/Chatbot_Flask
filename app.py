@@ -233,7 +233,7 @@ def response():
         # response['fulfillmentText'].append(allFiles)
         return jsonify(response)
     elif intent == "storeID":
-
+        print("store id intent")
         return
 
     print(request.get_json()['queryResult']['outputContexts'])
