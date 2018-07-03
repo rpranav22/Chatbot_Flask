@@ -234,7 +234,8 @@ def response():
         return jsonify(response)
     elif intent == "storeID":
         print("store id intent")
-        return
+        response['fulfillmentText'] = "ID has been stored."
+        return jsonify(response)
 
     print(request.get_json()['queryResult']['outputContexts'])
 
