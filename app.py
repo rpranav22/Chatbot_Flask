@@ -222,6 +222,7 @@ def response():
             id = entry['parameters']['id']
             session['id'] = id
             print("Just received ID: ", id)
+            break
     response = {}
     response['fulfillmentText'] = []
 
