@@ -218,9 +218,10 @@ def response():
 
     print("intent: ", intent)
     if intent == "get_topics":
-        response['fulfillmentText'].append("Here are all your topics: pick one.")
         allFiles = getTopics(id="2345")
-        response['fulfillmentText'].append(allFiles)
+        response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
+
+        # response['fulfillmentText'].append(allFiles)
         return jsonify(response)
 
     print(request.get_json()['queryResult']['outputContexts'])
