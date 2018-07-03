@@ -210,7 +210,7 @@ def reply():
 @app.route("/response", methods=['POST'])
 def response():
     json_data = request.get_json()
-    intent = json_data["intent"]["displayName"]
+    intent = json_data["queryResult"]["intent"]["displayName"]
     response = {}
     response['fulfillmentText'] = []
 
