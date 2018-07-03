@@ -260,39 +260,39 @@ def response():
             response['fulfillmentText'].append(drm)
             del session['topic']
         else:
-            sc = SC()
-            word_list = userQuery.split(' ')
-            sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
-            print("\nsq: ", sq)
-            corrected = []
-            # self.stopWords = stopwords.words("english")
-            for word in sq:
-                # if word in stopwords.words("english"):
-                #     continue
-                poss = sc.correction(word, topic)
-                if word != poss and not word in stopwords.words("english") and len(poss) > 4:
-                    corrected.append(poss)
-                else:
-                    corrected.append(word)
-
-            print("corrected: ", corrected)
-
-            if sq != corrected:
-                corrected = ' '.join(corrected)
-                print("\n\nDid you mean {}?".format(corrected))
-                response['fulfillmentText'].append("Did you mean: {}?".format(corrected))
-                # response['spellcheck'] = True
-                session['spellcheck'] = False
-                session['ques_corrected'] = corrected
-                session['ques'] = userQuery
-
-            else:
+            # sc = SC()
+            # word_list = userQuery.split(' ')
+            # sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
+            # print("\nsq: ", sq)
+            # corrected = []
+            # # self.stopWords = stopwords.words("english")
+            # for word in sq:
+            #     # if word in stopwords.words("english"):
+            #     #     continue
+            #     poss = sc.correction(word, topic)
+            #     if word != poss and not word in stopwords.words("english") and len(poss) > 4:
+            #         corrected.append(poss)
+            #     else:
+            #         corrected.append(word)
+            #
+            # print("corrected: ", corrected)
+            #
+            # if sq != corrected:
+            #     corrected = ' '.join(corrected)
+            #     print("\n\nDid you mean {}?".format(corrected))
+            #     response['fulfillmentText'].append("Did you mean: {}?".format(corrected))
+            #     # response['spellcheck'] = True
+            #     session['spellcheck'] = False
+            #     session['ques_corrected'] = corrected
+            #     session['ques'] = userQuery
+            #
+            # else:
 
                 # Get Response From Bot
-                pq = PQ(userQuery, True, False, True)
-                response['fulfillmentText'].append(drm.query(pq))
-                if 'spellcheck' in session:
-                    del session['spellcheck']
+            pq = PQ(userQuery, True, False, True)
+            response['fulfillmentText'].append(drm.query(pq))
+            if 'spellcheck' in session:
+                del session['spellcheck']
 
     else:
         response['fulfillmentText'].append("Please provide a relevant topic before you start asking me a question.")
