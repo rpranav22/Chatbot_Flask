@@ -210,8 +210,17 @@ def reply():
 @app.route("/response", methods=['POST'])
 def response():
     json_data = request.get_json()
+    intent = json_data["intent"]["displayName"]
+    response = {}
+    response['fulfillmentText'] = []
+
+    print("intent: ", intent)
+    if intent == "get_topics":
+        response['fulfillmentText'].append("Here are all your topics: pick one.")
+        return jsonify(response)
+
     print(request.get_json()['queryResult']['outputContexts'])
-    print("intent: ", json_data["intent"]["displayName"])
+
     # receive = request.form.get('msg')
     contexts = json_data['queryResult']['outputContexts']
     for entry in contexts:
@@ -226,8 +235,7 @@ def response():
     # userQuery="Hi"
     print("sess: ", session)
     # userQuery = "Hi"
-    response = {}
-    response['fulfillmentText'] = []
+
     # session['filecheck'] = False
     # drm = None
     if (userQuery is None):
