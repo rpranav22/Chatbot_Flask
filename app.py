@@ -232,6 +232,9 @@ def response():
 
         # response['fulfillmentText'].append(allFiles)
         return jsonify(response)
+    elif intent == "storeID":
+
+        return
 
     print(request.get_json()['queryResult']['outputContexts'])
 
