@@ -211,8 +211,8 @@ def reply():
 def response():
     json_data = request.get_json()
     print(request.get_json()['queryResult']['outputContexts'])
-    # print("topic: ", request.get_json()['queryResult']['outputContexts'][0]['parameters']['topic_name'])
-    receive = request.form.get('msg')
+    print("intent: ", json_data["intent"]["displayName"])
+    # receive = request.form.get('msg')
     contexts = json_data['queryResult']['outputContexts']
     for entry in contexts:
         print(entry)
@@ -290,26 +290,26 @@ def response():
     # response['fullfillmentText'] = response['fulfillmentText']
     response['source'] = 'ques answer'
 
-    response["payload"] = {
-        "google": {
-            "expectUserResponse": "true",
-            "richResponse": {
-                "items": [
-                    {
-                        "simpleResponse": {
-                            "textToSpeech": "this is a simple response"
-                        }
-                    }
-                ]
-            }
-        },
-        "facebook": {
-            "text": "Hello, Facebook!"
-        },
-        "slack": {
-            "text": "This is a text response for Slack."
-        }
-    }
+    # response["payload"] = {
+    #     "google": {
+    #         "expectUserResponse": "true",
+    #         "richResponse": {
+    #             "items": [
+    #                 {
+    #                     "simpleResponse": {
+    #                         "textToSpeech": "this is a simple response"
+    #                     }
+    #                 }
+    #             ]
+    #         }
+    #     },
+    #     "facebook": {
+    #         "text": "Hello, Facebook!"
+    #     },
+    #     "slack": {
+    #         "text": "This is a text response for Slack."
+    #     }
+    # }
     return jsonify(response)
 
 
