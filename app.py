@@ -232,7 +232,7 @@ def response():
 
         # response['fulfillmentText'].append(allFiles)
         return jsonify(response)
-    elif intent == "storeID":
+    elif intent == "storeID" or intent == "Retain Id":
         print("store id intent")
         response['fulfillmentText'] = "ID has been stored."
         return jsonify(response)
