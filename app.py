@@ -9,6 +9,8 @@ from DocumentRetrievalModel import DocumentRetrievalModel as DRM
 from ProcessedQuestion import ProcessedQuestion as PQ
 from nltk.corpus import stopwords
 import re
+from os import listdir
+from os.path import isfile, join
 # import enchant
 #
 # d = enchant.Dict("en_GB")
@@ -217,6 +219,8 @@ def response():
     print("intent: ", intent)
     if intent == "get_topics":
         response['fulfillmentText'].append("Here are all your topics: pick one.")
+        allFiles = getTopics(id="2345")
+        response['fulfillmentText'].append(allFiles)
         return jsonify(response)
 
     print(request.get_json()['queryResult']['outputContexts'])
@@ -347,6 +351,14 @@ def retrievePara(datasetName):
 
     # Processing Paragraphs
     return DRM(paragraphs, True, True)
+
+def getTopics(id):
+    print("id: ", id)
+    mypath = "dataset/"
+    onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+    print(onlyfiles)
+    return onlyfiles
+
 #############
 
 '''
