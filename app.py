@@ -227,6 +227,9 @@ def response():
     response['fulfillmentText'] = []
 
     print("intent: ", intent)
+    if intent == "end_session":
+        for entry in session:
+            print(entry)
     if intent == "get_topics":
         allFiles = getTopics(id="2345")
         response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
