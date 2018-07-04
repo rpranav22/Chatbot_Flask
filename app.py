@@ -213,16 +213,8 @@ def reply():
 def response():
     json_data = request.get_json()
     intent = json_data["queryResult"]["intent"]["displayName"]
-    contexts = json_data['queryResult']['outputContexts']
-    for entry in contexts:
-        print(entry)
-        if 'topic_name' in entry['parameters']:
-            topic = entry['parameters']['topic_name']
-        if  'id' in entry['parameters']:
-            id = entry['parameters']['id']
-            session['id'] = id
-            print("Just received ID: ", id)
-            break
+
+
     response = {}
     response['fulfillmentText'] = []
 
@@ -244,13 +236,25 @@ def response():
         return jsonify(response)
     elif intent == "storeID" or intent == "Retain Id":
         print("store id intent")
+        contexts = json_data['queryResult']['outputContexts']
+        for entry in contexts:
+            if  'id' in entry['parameters']:
+                id = entry['parameters']['id']
+                session['id'] = id
+                print("Just received ID: ", id)
+                break
+
         response['fulfillmentText'] = "ID has been stored."
         return jsonify(response)
 
     print(request.get_json()['queryResult']['outputContexts'])
 
     # receive = request.form.get('msg')
-
+    contexts = json_data['queryResult']['outputContexts']
+    for entry in contexts:
+        print(entry)
+        if 'topic_name' in entry['parameters']:
+            topic = entry['parameters']['topic_name']
     print("topic: ", topic)
     session['topic'] = topic
     # receive = request.data
