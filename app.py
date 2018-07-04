@@ -228,11 +228,15 @@ def response():
 
     print("intent: ", intent)
     if intent == "end_session":
+        store =[]
         for entry in session:
-            del session[str(entry)]
+            store.append(str(entry))
+        for ent in store:
+            del session[ent]
+        print("empty session: ", session)
         response['fulfillmentText'].append("Thank you for talking to me, hope you found what you were looking for. Until next time!")
         return jsonify(response)
-    if intent == "get_topics":
+    elif intent == "get_topics":
         allFiles = getTopics(id="2345")
         response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
