@@ -211,6 +211,7 @@ def reply():
 
 @app.route("/response", methods=['POST'])
 def response():
+    print("session at start: ", session)
     json_data = request.get_json()
     intent = json_data["queryResult"]["intent"]["displayName"]
 
@@ -271,7 +272,7 @@ def response():
             response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
         # del response['fulfillmentText']
-
+        print("sess: ", session)
         return jsonify(response)
     elif intent == "storeID" or intent == "Retain Id":
         print("store id intent")
