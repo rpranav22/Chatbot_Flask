@@ -216,8 +216,8 @@ def response():
 
 
     response = {}
-    response['fulfillmentText'] = []
-
+    # response['fulfillmentText'] = []
+    #
     print("intent: ", intent)
     if intent == "end_session":
         store =[]
@@ -292,7 +292,7 @@ def response():
     }
   }
 
-
+        del response['fulfillmentText']
         # response["fulfillmentMessages"]= [{
         #
         # }
