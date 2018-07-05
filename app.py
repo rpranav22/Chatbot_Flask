@@ -211,8 +211,10 @@ def reply():
 
 @app.route("/response", methods=['POST'])
 def response():
+
     print("session at start: ", session)
     json_data = request.get_json()
+    print("response id: ", json_data["responseId"])
     intent = json_data["queryResult"]["intent"]["displayName"]
 
     response = {}
