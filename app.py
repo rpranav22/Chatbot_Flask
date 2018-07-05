@@ -231,35 +231,48 @@ def response():
     elif intent == "get_topics":
         allFiles = getTopics(id="2345")
 
-        # response["fulfillmentMessages"]= [
-        #     {
-        #         "card": {
-        #             "title": "card title",
-        #             "subtitle": "card text",
-        #             "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-        #             "buttons": [
-        #                 {
-        #                     "text": "button text",
-        #                     "postback": "https://assistant.google.com/"
-        #                 }
-        #             ]
-        #         }
-        #     }
-        # ]
-        response["payload"] = {
-            "google": {
-                "expectUserResponse": True,
-                "richResponse": {
-                    "items": [
+        card = {
+                "card": {
+                    "title": "card title",
+                    "subtitle": "card text",
+                    "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                    "buttons": [
                         {
-                            "simpleResponse": {
-                                "textToSpeech": "this is a simple response"
-                            }
+                            "text": "button text",
+                            "postback": "https://assistant.google.com/"
                         }
                     ]
                 }
             }
+        response["fulfillmentMessages"]= [{
+            "messages": [
+            {
+                "platform": "google",
+                "replies": [
+                    "Quick reply 1",
+                    "Quick reply 2",
+                    "Quick reply 3"
+                ],
+                "title": "Quick Reply Title",
+                "type": 2
+            }
+        ]
         }
+        ]
+        # response["payload"] = {
+        #     "google": {
+        #         "expectUserResponse": True,
+        #         "richResponse": {
+        #             "items": [
+        #                 {
+        #                     "simpleResponse": {
+        #                         "textToSpeech": "this is a simple response"
+        #                     }
+        #                 }
+        #             ]
+        #         }
+        #     }
+        # }
         response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
         # response['fulfillmentText'].append(allFiles)
