@@ -298,9 +298,9 @@ def response():
         # }
         # ]
 
-        response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
+        # response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
-        # response['fulfillmentText'].append(allFiles)
+
         return jsonify(response)
     elif intent == "storeID" or intent == "Retain Id":
         print("store id intent")
