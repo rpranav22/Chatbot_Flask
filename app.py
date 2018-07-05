@@ -214,7 +214,8 @@ def response():
 
     print("session at start: ", session)
     json_data = request.get_json()
-    print("session id: ", json_data["session"].split('/')[-1:])
+    session['id'] = str(json_data["session"].split('/')[-1:])
+    print("session id: ", session['id'])
     print("id in session: ", 'id' in session)
     intent = json_data["queryResult"]["intent"]["displayName"]
 
@@ -232,6 +233,9 @@ def response():
 
     #
     print("intent: ", intent)
+    if intent == "send_id":
+        session['id'] = str(json_data["session"].split('/')[-1:])
+        response['fulfillmentText'].append("ID has been stored.")
     if intent == "end_session":
         store =[]
         for entry in session:
