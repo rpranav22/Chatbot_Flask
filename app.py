@@ -244,8 +244,7 @@ def response():
                     ]
                 }
             }
-        response["fulfillmentMessages"]= [{
-            "messages": [
+        response[ "messages"] = [
             {
                 "platform": "google",
                 "replies": [
@@ -257,22 +256,11 @@ def response():
                 "type": 2
             }
         ]
+        response["fulfillmentMessages"]= [{
+
         }
         ]
-        # response["payload"] = {
-        #     "google": {
-        #         "expectUserResponse": True,
-        #         "richResponse": {
-        #             "items": [
-        #                 {
-        #                     "simpleResponse": {
-        #                         "textToSpeech": "this is a simple response"
-        #                     }
-        #                 }
-        #             ]
-        #         }
-        #     }
-        # }
+
         response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
         # response['fulfillmentText'].append(allFiles)
