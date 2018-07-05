@@ -250,7 +250,7 @@ def response():
             quickReply["quickReplies"]['quickReplies'].append("select {}".format(top))
 
         params = json_data["queryResult"]["parameters"]
-        if params["topic_name"] == "":
+        if params["topicname"] == "":
             quickReply["quickReplies"]["title"] = "You have not selected a topic yet. Please do so from this list: "
             response["fulfillmentMessages"]= [quickReply]
             response['fulfillmentText'] = "You have not picked a topic yet. It is required."
