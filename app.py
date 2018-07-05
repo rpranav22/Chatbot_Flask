@@ -216,7 +216,7 @@ def response():
 
 
     response = {}
-    # response['fulfillmentText'] = []
+    response['fulfillmentText'] = []
     #
     print("intent: ", intent)
     if intent == "end_session":
@@ -292,14 +292,14 @@ def response():
     }
   }
 
-        del response['fulfillmentText']
+
         # response["fulfillmentMessages"]= [{
         #
         # }
         # ]
 
         # response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
-
+        del response['fulfillmentText']
 
         return jsonify(response)
     elif intent == "storeID" or intent == "Retain Id":
