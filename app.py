@@ -234,7 +234,7 @@ def response():
 
         quickReply = {
 
-                "platform": "ACTIONS_ON_GOOGLE",
+                # "platform": "ACTIONS_ON_GOOGLE",
                 "quickReplies": {
                     "title": "Choose one from the list of topics: ",
                     "quickReplies": [
@@ -252,8 +252,8 @@ def response():
 
         response["fulfillmentMessages"]= [quickReply]
 
-        # response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
-        del response['fulfillmentText']
+        response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
+        # del response['fulfillmentText']
 
         return jsonify(response)
     elif intent == "storeID" or intent == "Retain Id":
