@@ -214,9 +214,18 @@ def response():
     json_data = request.get_json()
     intent = json_data["queryResult"]["intent"]["displayName"]
 
-
     response = {}
     response['fulfillmentText'] = []
+    response["outputContexts"] = []
+    id_context = {
+            "name": "projects/chatbot-6fb36/agent/sessions/764fc47b-8f33-fae5-e75b-472d135ffbfc/contexts/id",
+            "lifespanCount": 550,
+            "parameters": {
+                "id.original": "4",
+                "id": "4"
+            }
+        }
+
     #
     print("intent: ", intent)
     if intent == "end_session":
@@ -238,12 +247,8 @@ def response():
                 "quickReplies": {
                     "title": "Choose one from the list of topics: ",
                     "quickReplies": [
-
-
                     ]
-
                 }
-
         }
 
         for top in allFiles:
@@ -255,7 +260,12 @@ def response():
             response["fulfillmentMessages"]= [quickReply]
             response['fulfillmentText'] = "You have not picked a topic yet. It is required."
         elif params["id"] == "":
-            response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
+            if 'id' not in session:
+                response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
+            else:
+                id_context["parameters"]["id.original"] = session["id"]
+                id_context["parameters"]["id"] = session["id"]
+                response["outputContexts"] = id_context
         else:
             response["fulfillmentMessages"] = [quickReply]
             response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
