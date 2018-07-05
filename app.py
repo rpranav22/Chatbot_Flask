@@ -293,10 +293,10 @@ def response():
   }
 
 
-        response["fulfillmentMessages"]= [{
-
-        }
-        ]
+        # response["fulfillmentMessages"]= [{
+        #
+        # }
+        # ]
 
         response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
