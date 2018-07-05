@@ -221,6 +221,10 @@ def response():
 
     response = {}
     response['fulfillmentText'] = []
+    if intent == "send_id":
+        session['id'] = str(json_data["session"].split('/')[-1:])
+        response['fulfillmentText'].append("ID has been stored.")
+        return jsonify(response)
     response["outputContexts"] = []
     id_context = {
             "name": "projects/chatbot-6fb36/agent/sessions/764fc47b-8f33-fae5-e75b-472d135ffbfc/contexts/id",
@@ -233,9 +237,7 @@ def response():
 
     #
     print("intent: ", intent)
-    if intent == "send_id":
-        session['id'] = str(json_data["session"].split('/')[-1:])
-        response['fulfillmentText'].append("ID has been stored.")
+
     if intent == "end_session":
         store =[]
         for entry in session:
