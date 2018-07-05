@@ -231,35 +231,23 @@ def response():
     elif intent == "get_topics":
         allFiles = getTopics(id="2345")
 
-        card = {
-                "card": {
-                    "title": "card title",
-                    "subtitle": "card text",
-                    "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                    "buttons": [
-                        {
-                            "text": "button text",
-                            "postback": "https://assistant.google.com/"
-                        }
-                    ]
-                }
-            }
 
         quickReply = {
 
                 "platform": "ACTIONS_ON_GOOGLE",
                 "quickReplies": {
-                "title": "quick replies title",
-                "quickReplies": [
-                        "quick reply 1",
-                        "quick reply 2",
-                        "quick reply 3"
+                    "title": "Choose one from the list of topics: ",
+                    "quickReplies": [
+
 
                     ]
 
                 }
 
         }
+
+        for top in allFiles:
+            quickReply["quickReplies"]['quickReplies'].append("select {}".format(top))
 
 
         response["fulfillmentMessages"]= [quickReply]
