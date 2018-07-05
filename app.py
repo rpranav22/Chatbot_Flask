@@ -231,21 +231,35 @@ def response():
     elif intent == "get_topics":
         allFiles = getTopics(id="2345")
 
-        response["fulfillmentMessages"]= [
-            {
-                "card": {
-                    "title": "card title",
-                    "subtitle": "card text",
-                    "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                    "buttons": [
+        # response["fulfillmentMessages"]= [
+        #     {
+        #         "card": {
+        #             "title": "card title",
+        #             "subtitle": "card text",
+        #             "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+        #             "buttons": [
+        #                 {
+        #                     "text": "button text",
+        #                     "postback": "https://assistant.google.com/"
+        #                 }
+        #             ]
+        #         }
+        #     }
+        # ]
+        response["payload"] = {
+            "google": {
+                "expectUserResponse": True,
+                "richResponse": {
+                    "items": [
                         {
-                            "text": "button text",
-                            "postback": "https://assistant.google.com/"
+                            "simpleResponse": {
+                                "textToSpeech": "this is a simple response"
+                            }
                         }
                     ]
                 }
             }
-        ]
+        }
         response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
         # response['fulfillmentText'].append(allFiles)
