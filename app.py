@@ -214,7 +214,8 @@ def response():
 
     print("session at start: ", session)
     json_data = request.get_json()
-    print("response id: ", json_data["session"].split('/')[-1:])
+    print("session id: ", json_data["session"].split('/')[-1:])
+    print("id in session: ", 'id' in session)
     intent = json_data["queryResult"]["intent"]["displayName"]
 
     response = {}
