@@ -249,10 +249,16 @@ def response():
         for top in allFiles:
             quickReply["quickReplies"]['quickReplies'].append("select {}".format(top))
 
+        params = json_data["queryResult"]["parameters"]
+        if params["topic"] == "":
+            quickReply["quickReplies"]["title"] = "You have not selected a topic yet. Please do so from this list: "
+            response["fulfillmentMessages"]= [quickReply]
+        elif params["id"] == "":
+            response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
+        else:
+            response["fulfillmentMessages"] = [quickReply]
+            response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
 
-        response["fulfillmentMessages"]= [quickReply]
-
-        response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
         # del response['fulfillmentText']
 
         return jsonify(response)
