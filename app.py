@@ -245,61 +245,25 @@ def response():
                 }
             }
 
+        quickReply = {
 
+                "platform": "ACTIONS_ON_GOOGLE",
+                "quickReplies": {
+                "title": "quick replies title",
+                "quickReplies": [
+                        "quick reply 1",
+                        "quick reply 2",
+                        "quick reply 3"
 
-        response["fulfillmentMessages"]= []
-        response["payload"] = {
-            "google": {
-                "expectUserResponse": "true",
-                "richResponse": {
-                    "items": [
-                        {
-                            "simpleResponse": {
-                                "textToSpeech": "Choose a item"
-                            }
-                        }
-                    ],
-                    "suggestions": [
-                        {
-                            "title": "Say this"
-                        },
-                        {
-                            "title": "or this"
-                        }
                     ]
-                },
-                "systemIntent": {
-                    "intent": "actions.intent.OPTION",
-                    "data": {
-                        "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                        "listSelect": {
-                            "title": "Hello",
-                            "items": [
-                                {
-                                    "optionInfo": {
-                                        "key": "first title key"
-                                    },
-                                    "description": "first description",
 
-                                    "title": "first title"
-                                },
-                                {
-                                    "optionInfo": {
-                                        "key": "second"
-                                    },
-                                    "description": "second description",
-                                    "image": {
-                                        "url": "https://lh3.googleusercontent.com/Nu3a6F80WfixUqf_ec_vgXy_c0-0r4VLJRXjVFF_X_CIilEu8B9fT35qyTEj_PEsKw",
-                                        "accessibilityText": "second alt"
-                                    },
-                                    "title": "second title"
-                                }
-                            ]
-                        }
-                    }
                 }
-            }
+
         }
+
+
+        response["fulfillmentMessages"]= [quickReply]
+
         # response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
         del response['fulfillmentText']
 
