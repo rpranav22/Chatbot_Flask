@@ -233,6 +233,16 @@ def response():
     preID = "projects/chatbot-6fb36/agent/sessions/"
     postID = "/contexts/id"
 
+    quickReply = {
+
+        # "platform": "ACTIONS_ON_GOOGLE",
+        "quickReplies": {
+            "title": "Choose one from the list of topics: ",
+            "quickReplies": [
+            ]
+        }
+    }
+
     if intent == "send_id":
         session['id'] = "".join(json_data["session"].split('/')[-1:])
         response['fulfillmentText'].append(session['id'])
@@ -240,6 +250,8 @@ def response():
         id_context["parameters"]["id.original"] = session["id"]
         id_context["parameters"]["id"] = session["id"]
         response["outputContexts"].append(id_context)
+        quickReply["quickReplies"]["title"] = "Click if you want to view all topics."
+        quickReply["quickReplies"]["quickReplies"].append("show topics")
         return jsonify(response)
 
     #
@@ -258,16 +270,6 @@ def response():
         allFiles = getTopics(id="2345")
 
 
-        quickReply = {
-
-                # "platform": "ACTIONS_ON_GOOGLE",
-                "quickReplies": {
-                    "title": "Choose one from the list of topics: ",
-                    "quickReplies": [
-                    ]
-                }
-        }
-
         for top in allFiles:
             quickReply["quickReplies"]['quickReplies'].append("select {}".format(top))
 
@@ -279,7 +281,7 @@ def response():
             response["fulfillmentMessages"]= [quickReply]
             response['fulfillmentText'] = "What type of topics do you want to view? (Old, New, Completed, All)"
         elif params["id"] == "":
-            quickReply["quickReplies"]["title"] = "Click to send ID"
+            quickReply["quickReplies"]["title"] = "ID is required before view respective topics. Click to send ID"
             quickReply["quickReplies"]["quickReplies"] = ["send ID"]
             response['fulfillmentMessages'] = [quickReply]
             response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
