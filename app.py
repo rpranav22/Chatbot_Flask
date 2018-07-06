@@ -252,6 +252,7 @@ def response():
         response["outputContexts"].append(id_context)
         quickReply["quickReplies"]["title"] = "Click if you want to view all topics."
         quickReply["quickReplies"]["quickReplies"].append("show topics")
+        response["fulfillmentMessages"] = [quickReply]
         return jsonify(response)
 
     #
