@@ -242,6 +242,11 @@ def response():
             ]
         }
     }
+    text = {
+        "text": {
+            "text": ""
+        }
+    }
 
     if intent == "send_id":
         session['id'] = "".join(json_data["session"].split('/')[-1:])
@@ -281,14 +286,20 @@ def response():
             quickReply["quickReplies"]["quickReplies"] = topicTypes
             response["fulfillmentMessages"]= [quickReply]
             response['fulfillmentText'] = "What type of topics do you want to view? (Old, New, Completed, All)"
+            text["text"]["text"] = response["fulfillmentText"]
+            response["fulfillmentMessages"].append(text)
         elif params["id"] == "":
             quickReply["quickReplies"]["title"] = "ID is required before view respective topics. Click to send ID"
             quickReply["quickReplies"]["quickReplies"] = ["send ID"]
             response['fulfillmentMessages'] = [quickReply]
             response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
+            text["text"]["text"] = response["fulfillmentText"]
+            response["fulfillmentMessages"].append(text)
         else:
             response["fulfillmentMessages"] = [quickReply]
             response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
+            text["text"]["text"] = response["fulfillmentText"]
+            response["fulfillmentMessages"].append(text)
 
         # del response['fulfillmentText']
         print("sess: ", session)
