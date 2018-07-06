@@ -2,3 +2,4 @@ stopwords
 averaged_perceptron_tagger
 punkt
 maxent_ne_chunker
+words
