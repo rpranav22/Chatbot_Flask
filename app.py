@@ -278,6 +278,9 @@ def response():
             response['fulfillmentText'] = "You have not picked a topic yet. It is required."
         elif params["id"] == "":
             if 'id' not in session:
+                quickReply["title"] = "Click to send ID"
+                quickReply["quickReplies"].append("send ID")
+                response['fulfillmentText'] = [quickReply]
                 response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
             else:
                 id_context["parameters"]["id.original"] = session["id"]
@@ -290,6 +293,8 @@ def response():
         # del response['fulfillmentText']
         print("sess: ", session)
         return jsonify(response)
+
+
     elif intent == "storeID" or intent == "Retain Id":
         print("store id intent")
         contexts = json_data['queryResult']['outputContexts']
