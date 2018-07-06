@@ -222,8 +222,8 @@ def response():
     response = {}
     response['fulfillmentText'] = []
     if intent == "send_id":
-        session['id'] = str(json_data["session"].split('/')[-1:])
-        response['fulfillmentText'].append("ID has been stored.")
+        session['id'] = "".join(json_data["session"].split('/')[-1:])
+        response['fulfillmentText'].append(session['id'])
         return jsonify(response)
     response["outputContexts"] = []
     id_context = {
