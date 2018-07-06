@@ -272,20 +272,17 @@ def response():
             quickReply["quickReplies"]['quickReplies'].append("select {}".format(top))
 
         params = json_data["queryResult"]["parameters"]
-        if params["topicname"] == "":
-            quickReply["quickReplies"]["title"] = "You have not selected a topic yet. Please do so from this list: "
+        if params["topictype"] == "":
+            quickReply["quickReplies"]["title"] = "Please specify the type of topics you want to view. "
+            topicTypes = ["Old", "Recent", "Completed", "All"]
+            quickReply["quickReplies"]["quickReplies"].extend(topicTypes)
             response["fulfillmentMessages"]= [quickReply]
-            response['fulfillmentText'] = "You have not picked a topic yet. It is required."
+            response['fulfillmentText'] = "What type of topics do you want to view? (Old, New, Completed, All)"
         elif params["id"] == "":
-            if 'id' not in session:
-                quickReply["title"] = "Click to send ID"
-                quickReply["quickReplies"].append("send ID")
-                response['fulfillmentText'] = [quickReply]
-                response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
-            else:
-                id_context["parameters"]["id.original"] = session["id"]
-                id_context["parameters"]["id"] = session["id"]
-                response["outputContexts"] = id_context
+            quickReply["title"] = "Click to send ID"
+            quickReply["quickReplies"]["quickReplies"].append("send ID")
+            response['fulfillmentMessages'] = [quickReply]
+            response['fulfillmentText'].append("You have not entered your ID yet, please do so.")
         else:
             response["fulfillmentMessages"] = [quickReply]
             response['fulfillmentText'].append("Here are all your topics: pick one. \n{}".format(" ".join(allFiles)))
