@@ -286,8 +286,8 @@ def response():
             quickReply["quickReplies"]["quickReplies"] = topicTypes
             response["fulfillmentMessages"]= [quickReply]
             response['fulfillmentText'] = "What type of topics do you want to view? (Old, New, Completed, All)"
-            text["text"]["text"] = response["fulfillmentText"]
-            response["fulfillmentMessages"].append(text)
+            # text["text"]["text"] = response["fulfillmentText"]
+            # response["fulfillmentMessages"].append(text)
         elif params["id"] == "":
             quickReply["quickReplies"]["title"] = "ID is required before view respective topics. Click to send ID"
             quickReply["quickReplies"]["quickReplies"] = ["send ID"]
