@@ -235,7 +235,7 @@ def response():
 
     quickReply = {
 
-        # "platform": "ACTIONS_ON_GOOGLE",
+        "platform": "ACTIONS_ON_GOOGLE",
         "quickReplies": {
             "title": "Choose one from the list of topics: ",
             "quickReplies": [
@@ -344,33 +344,7 @@ def response():
             response['fulfillmentText'].append(drm)
             del session['topic']
         else:
-            # sc = SC()
-            # word_list = userQuery.split(' ')
-            # sq = list(filter(lambda x: x, map(lambda x: re.sub(r'[^A-Za-z]', '', x), word_list)))
-            # print("\nsq: ", sq)
-            # corrected = []
-            # # self.stopWords = stopwords.words("english")
-            # for word in sq:
-            #     # if word in stopwords.words("english"):
-            #     #     continue
-            #     poss = sc.correction(word, topic)
-            #     if word != poss and not word in stopwords.words("english") and len(poss) > 4:
-            #         corrected.append(poss)
-            #     else:
-            #         corrected.append(word)
-            #
-            # print("corrected: ", corrected)
-            #
-            # if sq != corrected:
-            #     corrected = ' '.join(corrected)
-            #     print("\n\nDid you mean {}?".format(corrected))
-            #     response['fulfillmentText'].append("Did you mean: {}?".format(corrected))
-            #     # response['spellcheck'] = True
-            #     session['spellcheck'] = False
-            #     session['ques_corrected'] = corrected
-            #     session['ques'] = userQuery
-            #
-            # else:
+            # Input spellcheck code from TestCode here if topic specific spellcheck needs to be implemented
 
             # Get Response From Bot
             pq = PQ(userQuery, True, False, True)
@@ -387,26 +361,6 @@ def response():
     # response['fullfillmentText'] = response['fulfillmentText']
     response['source'] = 'ques answer'
 
-    # response["payload"] = {
-    #     "google": {
-    #         "expectUserResponse": "true",
-    #         "richResponse": {
-    #             "items": [
-    #                 {
-    #                     "simpleResponse": {
-    #                         "textToSpeech": "this is a simple response"
-    #                     }
-    #                 }
-    #             ]
-    #         }
-    #     },
-    #     "facebook": {
-    #         "text": "Hello, Facebook!"
-    #     },
-    #     "slack": {
-    #         "text": "This is a text response for Slack."
-    #     }
-    # }
     return jsonify(response)
 
 
