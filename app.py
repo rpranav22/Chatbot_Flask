@@ -221,19 +221,26 @@ def response():
 
     response = {}
     response['fulfillmentText'] = []
+    response["outputContexts"] = []
+    id_context = {
+        "name": "764fc47b-8f33-fae5-e75b-472d135ffbfc",
+        "lifespanCount": 550,
+        "parameters": {
+            "id.original": "4",
+            "id": "4"
+        }
+    }
+    preID = "projects/chatbot-6fb36/agent/sessions/"
+    postID = "/contexts/id"
+
     if intent == "send_id":
         session['id'] = "".join(json_data["session"].split('/')[-1:])
         response['fulfillmentText'].append(session['id'])
+        id_context["name"] = preID + session['id'] + postID
+        id_context["parameters"]["id.original"] = session["id"]
+        id_context["parameters"]["id"] = session["id"]
+        response["outputContexts"].append(id_context)
         return jsonify(response)
-    response["outputContexts"] = []
-    id_context = {
-            "name": "projects/chatbot-6fb36/agent/sessions/764fc47b-8f33-fae5-e75b-472d135ffbfc/contexts/id",
-            "lifespanCount": 550,
-            "parameters": {
-                "id.original": "4",
-                "id": "4"
-            }
-        }
 
     #
     print("intent: ", intent)
