@@ -273,6 +273,15 @@ def response():
         print("empty session: ", session)
         response['fulfillmentText'].append("Thank you for talking to me, hope you found what you were looking for. Until next time!")
         return jsonify(response)
+    elif intent == "Find ID":
+        response['fulfillmentText'].append("Your id is {}".format(id))
+        text["text"]["text"] = "Your id is {}".format(id)
+        response['fulfillmentMessages']=[text]
+        id_context["name"] = preID + session['id'] + postID
+        id_context["parameters"]["id.original"] = session["id"]
+        id_context["parameters"]["id"] = session["id"]
+        response["outputContexts"].append(id_context)
+        return jsonify(response)
     elif intent == "get_topics":
         allFiles = getTopics(id)
 
