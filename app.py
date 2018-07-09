@@ -214,7 +214,7 @@ def response():
 
     print("session at start: ", session)
     json_data = request.get_json()
-    session['id'] = str(json_data["session"].split('/')[-1:])
+    session['id'] = "".join(json_data["session"].split('/')[-1:])
     id = session['id']
     print("session id: ", session['id'])
     print("id in session: ", 'id' in session)
