@@ -274,7 +274,7 @@ def response():
         response['fulfillmentText'].append("Thank you for talking to me, hope you found what you were looking for. Until next time!")
         return jsonify(response)
     elif intent == "Find ID":
-        response['fulfillmentText'].append("Your id is {}".format(id))
+        response['fulfillmentText']= "Your id is {}".format(id)
         text["text"]["text"] = "Your id is {}".format(id)
         response['fulfillmentMessages']=[text]
         id_context["name"] = preID + session['id'] + postID
