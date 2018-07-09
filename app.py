@@ -215,6 +215,7 @@ def response():
     print("session at start: ", session)
     json_data = request.get_json()
     session['id'] = str(json_data["session"].split('/')[-1:])
+    id = session['id']
     print("session id: ", session['id'])
     print("id in session: ", 'id' in session)
     intent = json_data["queryResult"]["intent"]["displayName"]
@@ -273,7 +274,7 @@ def response():
         response['fulfillmentText'].append("Thank you for talking to me, hope you found what you were looking for. Until next time!")
         return jsonify(response)
     elif intent == "get_topics":
-        allFiles = getTopics(id="2345")
+        allFiles = getTopics(id)
 
 
         for top in allFiles:
